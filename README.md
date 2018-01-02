@@ -1,8 +1,8 @@
 # GestaoVinhos
 
-[Udemy](https://www.udemy.com/user/gisele-bernardes-da-silva/)
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
-[Bootstrap](https://github.com/twbs/bootstrap) version 4.0.0-beta.2.
+[Udemy](https://www.udemy.com/user/gisele-bernardes-da-silva/)<br>
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.<br>
+[Bootstrap](https://github.com/twbs/bootstrap) version 4.0.0-beta.2.<br>
 [Font Awesome](https://github.com/FortAwesome/Font-Awesome) version 4.7.0.
 
 ## Development server
