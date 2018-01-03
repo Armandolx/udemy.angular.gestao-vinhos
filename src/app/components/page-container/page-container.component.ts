@@ -15,7 +15,7 @@ export class PageContainerComponent implements OnInit {
   ngOnInit() {
   }
 
-  voltar() {
+  back() {
     this.acaoVoltar.emit();
   }
 

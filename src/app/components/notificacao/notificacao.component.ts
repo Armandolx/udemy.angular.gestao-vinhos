@@ -8,7 +8,7 @@ import { NotificacaoService} from '../../services/notificacao.service';
   selector: 'notificacao',
   templateUrl: './notificacao.component.html',
   styleUrls: ['./notificacao.component.css'],
-  animations: [
+  /*animations: [
     trigger('visibilidade', [
       state('visivel', style({
         opacity: 1
@@ -17,21 +17,21 @@ import { NotificacaoService} from '../../services/notificacao.service';
         opacity: 0
       })),
       transition('visivel => naoVisivel', animate('.5s'))
-    ])]  
+    ])]*/  
 })
 export class NotificacaoComponent implements OnInit {
 
   notificacao: Notificacao;
-  visibilidade: string  = 'naoVisivel';
+  visivel: boolean  = false;
 
   constructor(private notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
     this.notificacaoService.obterNotificacoes().subscribe((notificacao: Notificacao) => {
       this.notificacao = notificacao;
-      this.visibilidade = 'visivel';
+      this.visivel = true;
       setTimeout(() => {
-        this.visibilidade = 'naoVisivel';
+        this.visivel = false;
       }, 3000);
     })
   }

@@ -19,12 +19,7 @@ export class VinhosComponent implements OnInit {
   constructor(public vinhosService: VinhosService, public router: Router, public notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
-    this.vinhosService.listar()
-      .then((vinhos: Array<Vinho>) => {
-        this.vinhos = vinhos;
-      }).catch((error: any) => {
-        console.log(error);
-      });
+    this.listar();
   }
 
   private listar() {

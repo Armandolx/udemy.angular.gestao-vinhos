@@ -13,11 +13,11 @@ export class NotificacaoService {
     return this._notificacoes.asObservable();
   }
 
-  public sucesso (mensagem: string){
+  public success (mensagem: string){
     this.adicionar(mensagem, 'alert-success');
   }
 
-  public aviso (mensagem: string){
+  public warning (mensagem: string){
     this.adicionar(mensagem, 'alert-warning');
   }
 
@@ -25,7 +25,7 @@ export class NotificacaoService {
     this.adicionar(mensagem, 'alert-info');
   }
 
-  public perigo (mensagem: string){
+  public danger (mensagem: string){
     this.adicionar(mensagem, 'alert-danger');
   }
 

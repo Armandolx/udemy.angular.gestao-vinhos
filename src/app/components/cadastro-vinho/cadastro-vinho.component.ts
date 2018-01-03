@@ -43,7 +43,7 @@ export class CadastroVinhoComponent implements OnInit {
       }).catch(erro => console.log(erro));
   }
 
-  voltar(): void {
+  back(): void {
     this.router.navigate(['/vinhos']);
   }
 
