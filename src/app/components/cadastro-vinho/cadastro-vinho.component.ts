@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Vinho } from '../../models/vinho';
 
 import { VinhosService } from '../../services/vinhos.service';
+import { NotificacaoService } from '../../services/notificacao.service';
 
 @Component({
   selector: 'cadastro-vinho',
@@ -18,7 +19,7 @@ export class CadastroVinhoComponent implements OnInit {
   classificacoes: Array<string>;
   titulo: string;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private vinhoService: VinhosService){ }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private vinhoService: VinhosService, private notificacaoService: NotificacaoService){ }
 
   ngOnInit() {
     this.vinho = new Vinho();    
@@ -58,7 +59,7 @@ export class CadastroVinhoComponent implements OnInit {
     this.vinhoService.cadastrar(this.vinho)
       .then(response => {
         console.log(JSON.stringify(response));
-        alert("Vinho cadastrado com sucesso");
+        this.notificacaoService.success('Vinho cadastrado com sucesso!');
         this.router.navigate(['/vinhos']);
       })
       .catch(erro => {
@@ -69,8 +70,7 @@ export class CadastroVinhoComponent implements OnInit {
   private atualizar() {
     this.vinhoService.atualizar(this.vinho.id, this.vinho)
       .then(response => {
-        console.log(JSON.stringify(response));
-        alert("Vinho atualizado com sucesso");
+        this.notificacaoService.success('Vinho atualizado com sucesso!');
         this.router.navigate(['/vinhos']);
       })
       .catch(erro => {

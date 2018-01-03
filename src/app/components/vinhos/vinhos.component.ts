@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Vinho } from './../../models/vinho';
 
 import { VinhosService } from './../../services/vinhos.service';
+import { NotificacaoService } from './../../services/notificacao.service';
 
 @Component({
   selector: 'vinhos',
@@ -15,7 +16,7 @@ export class VinhosComponent implements OnInit {
   vinhos: Array<Vinho>;
   vinhoSelecionado: Vinho;
 
-  constructor(public vinhosService: VinhosService, public router: Router) { }
+  constructor(public vinhosService: VinhosService, public router: Router, public notificacaoService: NotificacaoService) { }
 
   ngOnInit() {
     this.vinhosService.listar()
@@ -39,17 +40,16 @@ export class VinhosComponent implements OnInit {
     this.router.navigate(['/detalhes-vinho', this.vinhoSelecionado.id]);
   }
 
-  edit(vinho:Vinho){
+  edit(vinho: Vinho){
     this.vinhoSelecionado = vinho;
     this.router.navigate(['cadastro-vinho', this.vinhoSelecionado.id]);
   }
 
-  remove(vinho:Vinho){
+  remove(vinho: Vinho){
     this.vinhoSelecionado = vinho;
     this.vinhosService.remover(this.vinhoSelecionado.id)
       .then(response => {
-        console.log(response.status);
-        alert("Vinho removido com sucesso");
+        this.notificacaoService.warning('Vinho removido com sucesso!');
         this.listar();
       }).catch(erro => console.log(erro));
   }
