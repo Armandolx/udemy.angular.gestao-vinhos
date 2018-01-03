@@ -33,13 +33,15 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                     ))
                 }
             }
-            if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Get) {
+            if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Get
+            && connection.request.headers.get('authorization') === 'Bearer fake-jwt-token') {
                 connection.mockRespond(new Response(
                     new ResponseOptions({status: 200, body: vinhos})
                 ));
             }
 
-            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Get) {
+            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Get
+            && connection.request.headers.get('authorization') === 'Bearer fake-jwt-token') {
                 let vinhoParts = connection.request.url.split('/');
                 let id = parseInt(vinhoParts[vinhoParts.length - 1]);
                 let vinhosEncontrados = vinhos.filter((vinho:Vinho) => {
@@ -51,7 +53,8 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 ));
             }
 
-            if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Post) {
+            if(connection.request.url.endsWith('/vinhos') && connection.request.method === RequestMethod.Post
+            && connection.request.headers.get('authorization') === 'Bearer fake-jwt-token') {
                 let novoVinho = JSON.parse(connection.request.getBody());
                 let vinhoDuplicado = vinhos.filter((vinho:Vinho) => {
                     return vinho.nome === novoVinho.nome;
@@ -69,7 +72,8 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 ));
             }
 
-            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Put) {
+            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Put
+            && connection.request.headers.get('authorization') === 'Bearer fake-jwt-token') {
                 let vinhoAtualizado = JSON.parse(connection.request.getBody());
                 let vinhoCadastrado = vinhos.filter((vinho:Vinho) => {
                     return vinho.id === vinhoAtualizado.id;

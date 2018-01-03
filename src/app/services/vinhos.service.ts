@@ -55,7 +55,7 @@ export class VinhosService {
   }
 
   private header(): RequestOptions {
-    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.autenticacaoService.token });
+    let headers = new Headers({ 'Content-Type': 'application/json'});
     let requestOptions = new RequestOptions({ headers: headers });
     return requestOptions;
   }
