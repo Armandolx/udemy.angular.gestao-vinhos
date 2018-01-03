@@ -1,5 +1,5 @@
 .posicao-rodape {
-    top: 120%;
+    position: absolute;
     width: 100%;
-    position: absolute;    
+    top: 135%;
 }

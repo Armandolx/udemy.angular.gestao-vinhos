@@ -5,10 +5,15 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#" routerLink="/vinhos" routerLinkActive="active">Listagem</a>
-      <a class="nav-item nav-link" href="#" routerLink="/cadastro-vinho" routerLinkActive="active">Cadastro</a>
+      <a class="nav-item nav-link active" href="#" routerLink="/vinhos" routerLinkActive="active" destacarEstilo>Listagem</a>
+      <a class="nav-item nav-link" href="#" routerLink="/cadastro-vinho" routerLinkActive="active" destacarEstilo>Cadastro</a>
     </div>
   </div>
+  <!-- Uso de pipes -->
+  <!-- <a href="#" class="navbar-brand">{{dataHoje | date}}</a>
+  <a href="#" class="navbar-brand">{{dataHoje | date: 'dd/MM/yyyy'}}</a> 
+  <a href="#" class="navbar-brand">{{'01/05/2018' | date}}</a>
+  <a href="#" class="navbar-brand">{{nome | uppercase}}</a> -->
 </nav>
 
 <div class="body container">

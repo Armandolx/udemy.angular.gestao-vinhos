@@ -9,11 +9,15 @@ export class NotificacaoService {
 
   constructor() { }
 
-  public success (mensagem: string){
+  public obterNotificacoes(){
+    return this._notificacoes.asObservable();
+  }
+
+  public sucesso (mensagem: string){
     this.adicionar(mensagem, 'alert-success');
   }
 
-  public warning (mensagem: string){
+  public aviso (mensagem: string){
     this.adicionar(mensagem, 'alert-warning');
   }
 
@@ -21,19 +25,14 @@ export class NotificacaoService {
     this.adicionar(mensagem, 'alert-info');
   }
 
-  public danger (mensagem: string){
+  public perigo (mensagem: string){
     this.adicionar(mensagem, 'alert-danger');
   }
 
-  private adicionar (mensagem: string, tipo: string){
-    let notificacao: Notificacao = new Notificacao();
+  private adicionar(mensagem: string, tipo: string) {
+    let notificacao:Notificacao = new Notificacao();
     notificacao.mensagem = mensagem;
     notificacao.tipo = tipo;
     this._notificacoes.next(notificacao);
   }
-
-  public obterNotificacoes(){
-    return this._notificacoes.asObservable();
-  }
-
 }

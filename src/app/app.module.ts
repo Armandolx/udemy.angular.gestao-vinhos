@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -15,6 +16,9 @@ import { VinhoApi } from './vinho-api';
 import { CadastroVinhoComponent } from './components/cadastro-vinho/cadastro-vinho.component';
 import { DetalhesVinhoComponent } from './components/detalhes-vinho/detalhes-vinho.component';
 import { NotificacaoComponent } from './components/notificacao/notificacao.component';
+import { FiltroTabelaPipe } from './pipes/filtro-tabela.pipe';
+import { DestacarEstiloDirective } from './diretivas/destacar-estilo.directive';
+import { PageContainerComponent } from './components/page-container/page-container.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +26,14 @@ import { NotificacaoComponent } from './components/notificacao/notificacao.compo
     VinhosComponent,
     CadastroVinhoComponent,
     DetalhesVinhoComponent,
-    NotificacaoComponent    
+    NotificacaoComponent,
+    FiltroTabelaPipe,
+    DestacarEstiloDirective,
+    PageContainerComponent    
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule  ,
     InMemoryWebApiModule.forRoot(VinhoApi) ,
