@@ -5,13 +5,14 @@ import { Vinho } from './../models/vinho';
 import { Http, Request, RequestOptions, RequestOptionsArgs, Response, Headers } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
+import { AutenticacaoService } from 'app/services/autenticacao.service';
 
 @Injectable()
 export class VinhosService {
 
   private apiUrl:string = '/vinhos';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private autenticacaoService: AutenticacaoService) { }
 
   listar(): Promise<Array<Vinho>> {
     return this.http.get(this.apiUrl)
@@ -54,7 +55,7 @@ export class VinhosService {
   }
 
   private header(): RequestOptions {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.autenticacaoService.token });
     let requestOptions = new RequestOptions({ headers: headers });
     return requestOptions;
   }

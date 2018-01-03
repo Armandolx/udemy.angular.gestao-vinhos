@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise'
 export class AutenticacaoService {
 
   private _usuarioLogado:boolean = false;
-  private token: string;
+  private _token: string;
 
   constructor(private http: Http) { }
 
@@ -16,7 +16,7 @@ export class AutenticacaoService {
       .toPromise()
       .then((response: Response) => {
           if(response.json() && response.json().token) {
-            this.token = response.json().token;
+            this._token = response.json().token;
             localStorage.setItem('usuarioSistema', JSON.stringify(response.json().usuario));  
             return true;                  
           } else {
@@ -27,7 +27,7 @@ export class AutenticacaoService {
   }
 
   logout(): void {
-    this.token = null;
+    this._token = null;
     localStorage.removeItem('usuarioSistema');
   }
 
@@ -41,6 +41,10 @@ export class AutenticacaoService {
     } else {
       return 'Usuário não autenticado no sistema';
     }
+  }
+
+  get token(): string {
+    return this._token;
   }
 
 }

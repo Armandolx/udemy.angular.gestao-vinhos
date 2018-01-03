@@ -89,7 +89,8 @@ export function fakeBackend(backend: MockBackend, options: BaseRequestOptions) {
                 ));
             }
 
-            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Delete){
+            if(connection.request.url.match(/\/vinhos\/\d+$/) && connection.request.method === RequestMethod.Delete 
+            && connection.request.headers.get('authorization') === 'Bearer fake-jwt-token'){
                 let vinhoParts = connection.request.url.split('/');
                 let idVinho = parseInt(vinhoParts[vinhoParts.length - 1]);
                 for(let i = 0; i < vinhos.length; i++) {
