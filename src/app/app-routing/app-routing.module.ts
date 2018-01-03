@@ -6,6 +6,9 @@ import {Routes, RouterModule} from '@angular/router';
 import { VinhosComponent } from '../components/vinhos/vinhos.component';
 import { CadastroVinhoComponent } from '../components/cadastro-vinho/cadastro-vinho.component';
 import { DetalhesVinhoComponent} from '../components/detalhes-vinho/detalhes-vinho.component';
+import { LoginComponent} from '../components/login/login.component';
+
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,20 +18,28 @@ const routes: Routes = [
   },
   {
     path: 'vinhos',
-    component: VinhosComponent
+    component: VinhosComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cadastro-vinho',
-    component: CadastroVinhoComponent
+    component: CadastroVinhoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cadastro-vinho/:id',
-    component: CadastroVinhoComponent
+    component: CadastroVinhoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'detalhes-vinho/:id',
-    component: DetalhesVinhoComponent
-  }  
+    component: DetalhesVinhoComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  } 
 ]
 
 @NgModule({

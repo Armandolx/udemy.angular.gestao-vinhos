@@ -9,38 +9,40 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class VinhosService {
 
+  private apiUrl:string = '/vinhos';
+
   constructor(private http: Http) { }
 
   listar(): Promise<Array<Vinho>> {
-    return this.http.get('api/vinhos')
+    return this.http.get(this.apiUrl)
       .toPromise()
-      .then(response => response.json().data as Array<Vinho>)
+      .then(response => response.json() as Array<Vinho>)
       .catch(this.tratarErro);
   }
   
   cadastrar(vinho: Vinho): Promise<Response> {
-    return this.http.post('api/vinhos', JSON.stringify(vinho), this.header())
+    return this.http.post(this.apiUrl, JSON.stringify(vinho), this.header())
       .toPromise()
       .then(response => response)
       .catch(this.tratarErro);
   }
 
   buscar(id: number): Promise<Vinho> {
-    return this.http.get(`api/vinhos/${id}`)
+    return this.http.get(`${this.apiUrl}/${id}`)
       .toPromise()
-      .then(response => response.json().data as Vinho)
+      .then(response => response.json() as Vinho)
       .catch(this.tratarErro);
   }
 
   atualizar(id: number, vinho: Vinho): Promise<Response> {
-    return this.http.put(`api/vinhos/${id}`, vinho, this.header())
+    return this.http.put(`${this.apiUrl}/${id}`, vinho, this.header())
       .toPromise()
       .then(response => response)
       .catch(this.tratarErro);
   }
 
   remover(id: number): Promise<Response> {
-    return this.http.delete(`api/vinhos/${id}`, this.header())
+    return this.http.delete(`${this.apiUrl}/${id}`, this.header())
       .toPromise()
       .then(response => response)
       .catch(this.tratarErro);
